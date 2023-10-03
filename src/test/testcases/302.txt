@@ -1,4 +1,0 @@
-class main {
-            var a:int;
-            var b:int;
-        }
