@@ -1,4 +1,4 @@
-# Generated from d:/y4_hk1/ppl/assignment2-initial/assignment2-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
+# Generated from d:/y4_hk1/ppl/assignment2-initial/assignment2-initial/pplAssignment/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .CSlangParser import CSlangParser
@@ -32,6 +32,24 @@ class CSlangListener(ParseTreeListener):
 
     # Exit a parse tree produced by CSlangParser#classbody.
     def exitClassbody(self, ctx:CSlangParser.ClassbodyContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#const_decl.
+    def enterConst_decl(self, ctx:CSlangParser.Const_declContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#const_decl.
+    def exitConst_decl(self, ctx:CSlangParser.Const_declContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#full_form_const.
+    def enterFull_form_const(self, ctx:CSlangParser.Full_form_constContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#full_form_const.
+    def exitFull_form_const(self, ctx:CSlangParser.Full_form_constContext):
         pass
 
 
@@ -242,12 +260,12 @@ class CSlangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#comparision_ops.
-    def enterComparision_ops(self, ctx:CSlangParser.Comparision_opsContext):
+    # Enter a parse tree produced by CSlangParser#compare_ops.
+    def enterCompare_ops(self, ctx:CSlangParser.Compare_opsContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#comparision_ops.
-    def exitComparision_ops(self, ctx:CSlangParser.Comparision_opsContext):
+    # Exit a parse tree produced by CSlangParser#compare_ops.
+    def exitCompare_ops(self, ctx:CSlangParser.Compare_opsContext):
         pass
 
 

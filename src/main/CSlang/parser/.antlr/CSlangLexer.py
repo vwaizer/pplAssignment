@@ -1,4 +1,4 @@
-# Generated from d:/y4_hk1/ppl/assignment2-initial/assignment2-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
+# Generated from d:/y4_hk1/ppl/assignment2-initial/assignment2-initial/pplAssignment/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
 from antlr4 import *
 from io import StringIO
 import sys

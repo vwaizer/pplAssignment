@@ -10,8 +10,10 @@ options{
 
         program: classdecl+ EOF;
         classdecl: CLASS (id_type|(id_type RARROW id_type))  LCB classbody* RCB ;
-        classbody: (var_decl|funct_declare) ;
-        var_decl: (CONST|VAR) (short_form|full_form) SEMI;
+        classbody: (var_decl|funct_declare|const_decl) ;
+        const_decl: CONST full_form_const SEMI;
+        full_form_const: id_type identifier_list  expr;
+        var_decl: (VAR) (short_form|full_form) SEMI;
         short_form: short_identifier_list COLON whole_type;
         short_identifier_list: id_type COMMA short_identifier_list | id_type;
         full_form: id_type identifier_list  expr;
@@ -46,10 +48,10 @@ options{
         arr_type: LCB DIM RCB core_type;
         class_create: NEW whole_type LB (expression_list)? RB;
 
-        funct_declare: FUNCTION funct_prototype  (funct_body?);
+        funct_declare: FUNCTION funct_prototype  (funct_body);
         funct_prototype:  (id_type params COLON funct_return_type)| (CONTRUCTOR params) ;
         params: LB parameter_list? RB;
-        parameter_list: (id_type COMMA)* parameter_declare;
+        parameter_list: parameter_declare COMMA parameter_list | parameter_declare;
         parameter_declare:  id_type COLON whole_type;
 
         funct_body: block_statement;
@@ -84,7 +86,7 @@ options{
         true_statements: block_statement;
         else_expression: ELSE block_statement;
         // Loop
-        for_statement: FOR  assignment_statement  expr SEMI expr  for_body;
+        for_statement: FOR  assignment_statement  expr SEMI assignment_statement  for_body;
         for_body: block_statement ;
         method_access: instance_access|static_access|instance_method_access|static_method_access;
         instance_access: (ID|SELF) DOT ID;
