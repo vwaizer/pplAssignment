@@ -207,7 +207,7 @@ class ASTGeneration(CSlangVisitor):
             return (Id(ctx.CONTRUCTOR().getText()),self.visit(ctx.params()))
         else:
             return (self.visit(ctx.id_type()),self.visit(ctx.params()),self.visit(ctx.funct_return_type()))
-    def visitFunct_return_type(self,ctx:CSlangParser.Funct_return_typeCOntext):
+    def visitFunct_return_type(self,ctx:CSlangParser.Funct_return_typeContext):
         if(ctx.VOID()):
             return VoidType()
         else:
