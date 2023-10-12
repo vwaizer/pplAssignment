@@ -245,7 +245,7 @@ class ASTGeneration(CSlangVisitor):
         if(ctx.expr()):
             return Return(self.visit(ctx.expr()))
         else: 
-            return Return()
+            return Return(None)
     def visitAssignment_statement(self, ctx: CSlangParser.Assignment_statementContext):
         assignment_content = self.visit(ctx.assignment_content())
         return Assign(assignment_content[0], assignment_content[1])

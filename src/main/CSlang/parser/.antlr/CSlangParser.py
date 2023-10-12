@@ -177,7 +177,7 @@ def serializedATN():
         111,1,0,0,0,472,473,3,96,48,0,473,113,1,0,0,0,474,475,3,22,11,0,
         475,115,1,0,0,0,476,477,3,96,48,0,477,117,1,0,0,0,478,479,5,5,0,
         0,479,480,3,96,48,0,480,119,1,0,0,0,481,482,5,6,0,0,482,483,3,102,
-        51,0,483,484,3,22,11,0,484,485,5,18,0,0,485,486,3,22,11,0,486,487,
+        51,0,483,484,3,22,11,0,484,485,5,18,0,0,485,486,3,102,51,0,486,487,
         3,122,61,0,487,121,1,0,0,0,488,489,3,96,48,0,489,123,1,0,0,0,490,
         495,3,126,63,0,491,495,3,128,64,0,492,495,3,130,65,0,493,495,3,132,
         66,0,494,490,1,0,0,0,494,491,1,0,0,0,494,492,1,0,0,0,494,493,1,0,
@@ -4165,15 +4165,15 @@ class CSlangParser ( Parser ):
         def FOR(self):
             return self.getToken(CSlangParser.FOR, 0)
 
-        def assignment_statement(self):
-            return self.getTypedRuleContext(CSlangParser.Assignment_statementContext,0)
-
-
-        def expr(self, i:int=None):
+        def assignment_statement(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(CSlangParser.ExprContext)
+                return self.getTypedRuleContexts(CSlangParser.Assignment_statementContext)
             else:
-                return self.getTypedRuleContext(CSlangParser.ExprContext,i)
+                return self.getTypedRuleContext(CSlangParser.Assignment_statementContext,i)
+
+
+        def expr(self):
+            return self.getTypedRuleContext(CSlangParser.ExprContext,0)
 
 
         def SEMI(self):
@@ -4212,7 +4212,7 @@ class CSlangParser ( Parser ):
             self.state = 484
             self.match(CSlangParser.SEMI)
             self.state = 485
-            self.expr()
+            self.assignment_statement()
             self.state = 486
             self.for_body()
         except RecognitionException as re:
