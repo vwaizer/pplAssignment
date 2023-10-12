@@ -1,6 +1,6 @@
 // Generated from d:/y4_hk1/ppl/assignment2-initial/assignment2-initial/pplAssignment/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
 
-from lexererr import *
+from lexererr import *;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

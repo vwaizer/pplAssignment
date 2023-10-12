@@ -1,7 +1,7 @@
 grammar CSlang;
 
 @lexer::header {
-from lexererr import *
+from lexererr import *;
 }
 
 options{
@@ -34,7 +34,7 @@ options{
         expr11: array_idx | operands ;
         array_idx: id_type index_expression;
         index_expression: LSB expression_list? RSB;
-        operands: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT  | function_call | id_type | subexpression|instance_access|static_access;
+        operands: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT  | function_call | id_type | subexpression;
         subexpression: LB expr RB ;
         compare_ops: EQ_OP | NEQ_OP | LT_OP| GT_OP | LEQ_OP | GEQ_OP;
         // ------------------------------------------
@@ -42,9 +42,7 @@ options{
         core_type: INT|FLOAT|BOOL|STRING|arr_type;
         id_type: ID| at_id;
         at_id: SIGN ID;
-        function_call: id_type function_call_params;
-        function_call_params: LB function_call_param_list? RB;
-        function_call_param_list: expr COMMA function_call_param_list | expr;
+        
         arr_type: LCB DIM RCB core_type;
         class_create: NEW whole_type LB (expression_list)? RB;
 
@@ -55,7 +53,10 @@ options{
         parameter_declare:  id_type COLON whole_type;
 
         funct_body: block_statement;
-
+        function_call_stmt:(id_type DOT)?id_type function_call_params SEMI;
+        function_call: (id_type DOT)?id_type function_call_params;
+        function_call_params: LB function_call_param_list? RB;
+        function_call_param_list: expr COMMA function_call_param_list | expr;
         funct_return_type: VOID | core_type;
         continue_statement: CONTINUE SEMI;
         break_statement: BREAK SEMI;
@@ -69,10 +70,10 @@ options{
                 | return_statement
                 | break_statement
                 | continue_statement
-                | function_call
                 | block_statement 
                 | var_decl
-                |method_access;
+                |function_call_stmt;
+        
         assignment_statement: assignment_content SEMI;
         assignment_content: lhs ASSGIN_OP assign_expressions;
         lhs: id_type | array_idx;
@@ -88,12 +89,12 @@ options{
         // Loop
         for_statement: FOR  assignment_statement  expr SEMI assignment_statement  for_body;
         for_body: block_statement ;
-        method_access: instance_access|static_access|instance_method_access|static_method_access;
-        instance_access: (ID|SELF) DOT ID;
-        static_access:  (ID|SELF)DOT at_id;
+        // method_access: instance_access|static_access|instance_method_access|static_method_access;
+        // instance_access: (ID|SELF) DOT ID;
+        // static_access:  (ID|SELF)DOT at_id;
 
-        instance_method_access: expr DOT ID LB expression_list RB SEMI;
-        static_method_access: ( ID DOT )?  at_id LB expression_list RB SEMI; 
+        // instance_method_access: expr DOT ID LB expression_list RB SEMI;
+        // static_method_access: ( ID DOT )?  at_id LB expression_list RB SEMI; 
 
 
 
